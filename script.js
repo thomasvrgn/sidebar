@@ -21,8 +21,8 @@ button.addEventListener('click', function () {
 })
 
 window.addEventListener('click', function (event) {
-  if (event.target !== button) {
-    if (event.target !== navbar && !checkParent(button, event.target)) {
+  if (event.target !== button && event.target !== navbar[0]) {
+    if (!checkParent(button, event.target)) {
       navbar[0].style.left = -navbar[0].clientWidth + 'px'
     }
   } else {
