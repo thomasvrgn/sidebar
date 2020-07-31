@@ -1,5 +1,6 @@
 const navbar = document.getElementsByTagName('nav'),
-  button = document.getElementsByClassName('sidebar-button')[0]
+  button = document.getElementsByClassName('sidebar-button')[0],
+  close = document.getElementsByClassName('sidebar-close')[0]
 
 function checkParent (parent, child) { 
   let node = child.parentNode
@@ -21,8 +22,8 @@ button.addEventListener('click', function () {
 })
 
 window.addEventListener('click', function (event) {
-  if (event.target !== button && event.target !== navbar[0]) {
-    if (!checkParent(button, event.target)) {
+  if (event.target !== button && event.target !== navbar[0] && event.target !== close) {
+    if (!checkParent(button, event.target) && !checkParent(navbar[0], event.target)) {
       navbar[0].style.left = -navbar[0].clientWidth + 'px'
     }
   } else {
