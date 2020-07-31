@@ -9,7 +9,7 @@
     <script src="script.js" defer></script>
   </head>
   <body class="bg-gray-200">
-    <nav class="flex bg-white absolute top-0 min-w-1/4 h-full flex-col transition-all duration-1000">
+    <nav class="flex bg-white absolute top-0 min-w-1/4 h-full flex-col transition-all duration-700 ease-out">
       <div class="flex flex-initial justify-center py-4">
         <span class="font-bold text-3xl mx-8 text-gray-700">
           SIDEBAR
@@ -18,15 +18,18 @@
       <div class="flex flex-initial my-4 justify-center">
         <ul class="relative w-full">
           <li class="hover:bg-gray-100 relative block w-full py-2 px-4 cursor-pointer text-gray-700">
+            <span class="mr-2">
+              <i class="fas fa-home"></i>
+            </span>
             test
           </li>
         </ul>
       </div>
     </nav>
-    <div class="container px-6 py-2 sidebar-button">
-      <span class="text-4xl text-gray-800 cursor-pointer">
+    <div class="mx-6 my-2 inline-block sidebar-button">
+      <button class="text-4xl text-gray-800 cursor-pointer focus:outline-none">
         <i class="fas fa-bars"></i>
-      </span>
+      </button>
     </div>
   </body>
 </html>
