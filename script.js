@@ -30,3 +30,7 @@ window.addEventListener('click', function (event) {
     navbar[0].style.left = '0px'
   }
 })
+
+close.addEventListener('click', function () {
+  navbar[0].style.left = -navbar[0].clientWidth + 'px'
+})
