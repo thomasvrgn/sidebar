@@ -32,6 +32,7 @@ function changeNavbarStatus() {
 // LISTENERS
 
 button.addEventListener('click', function () {
+  if (window.matchMedia('(min-width: 768px)').matches) return;
   switched = !switched;
   changeNavbarStatus();
 });
@@ -44,6 +45,17 @@ header.addEventListener('click', function (event) {
 });
 
 window.addEventListener('load', function () {
+  if (window.matchMedia('(min-width: 768px)').matches) return;
   aside.style.transform = 'translateX(-' + aside.offsetWidth + 'px)';
   header.style.transform = 'translateX(0px)';
+});
+
+window.addEventListener('resize', function () {
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    aside.style.transform = 'translateX(0px)';
+    header.style.transform = 'translateX(0px)';
+  } else {
+    aside.style.transform = 'translateX(-' + aside.offsetWidth + 'px)';
+    header.style.transform = 'translateX(0px)';
+  }
 });
