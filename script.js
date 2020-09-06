@@ -1,36 +1,49 @@
-const navbar = document.getElementsByTagName('nav'),
-  button = document.getElementsByClassName('sidebar-button')[0],
-  close = document.getElementsByClassName('sidebar-close')[0]
+// VARIABLES
 
-function checkParent (parent, child) { 
-  let node = child.parentNode
-  while (node != null) { 
-    if (node == parent) { 
-      return true
-    } 
-    node = node.parentNode
-  } 
-  return false
-} 
+const aside = document.getElementById('asideExample');
+const header = document.getElementById('headerExample');
+const button = document.getElementById('asideButton');
+let switched = false;
 
-window.addEventListener('load', function () {
-  navbar[0].style.left = -navbar[0].clientWidth + 'px'
-})
+// FUNCTIONS
+
+function hasParentWithMatchingSelector(target, selector) {
+  const element = document.querySelector(selector)
+  if (target === element)
+    return true
+  else
+    if (target.parentNode)
+      return hasParentWithMatchingSelector(target.parentNode, selector)
+    else
+      return false
+}
+
+function changeNavbarStatus() {
+  if (switched) { 
+    aside.style.transform = 'translateX(0px)';
+    header.style.transform = 'translateX(' + aside.offsetWidth + 'px)';
+  } else {
+    aside.style.transform = 'translateX(-' + aside.offsetWidth + 'px)';
+    header.style.transform = 'translateX(0px)';
+  }
+  return null;
+}
+
+// LISTENERS
 
 button.addEventListener('click', function () {
-  navbar[0].style.left = '0px'
-})
+  switched = !switched;
+  changeNavbarStatus();
+});
 
-window.addEventListener('click', function (event) {
-  if (event.target !== button && event.target !== navbar[0] && event.target !== close) {
-    if (!checkParent(button, event.target) && !checkParent(navbar[0], event.target)) {
-      navbar[0].style.left = -navbar[0].clientWidth + 'px'
-    }
-  } else {
-    navbar[0].style.left = '0px'
-  }
-})
+header.addEventListener('click', function (event) {
+  if (hasParentWithMatchingSelector(event.target, '#asideButton')) return;
+  if (window.matchMedia('(min-width: 768px)').matches) return;
+  switched = false;
+  changeNavbarStatus();
+});
 
-close.addEventListener('click', function () {
-  navbar[0].style.left = -navbar[0].clientWidth + 'px'
-})
+window.addEventListener('load', function () {
+  aside.style.transform = 'translateX(-' + aside.offsetWidth + 'px)';
+  header.style.transform = 'translateX(0px)';
+});
